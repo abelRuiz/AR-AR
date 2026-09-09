@@ -269,6 +269,16 @@ button:active {
 }
 
 @media (max-width: 600px) {
+    body {
+        background:
+            radial-gradient(
+                circle at top,
+                rgba(255, 255, 255, 0.75),
+                transparent 45%
+            ),
+            #eee8df;
+    }
+
     .container {
         align-items: flex-start;
         padding: 20px 14px;
