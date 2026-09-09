@@ -147,6 +147,44 @@ input {
     line-height: 2;
 }
 
+.intro-text {
+    margin: 28px 0 34px;
+    font-size: 18px;
+    line-height: 1.9;
+    text-align: left;
+}
+
+.intro-text p {
+    margin: 0 0 22px;
+}
+
+.start-button {
+    display: inline-block;
+    width: 100%;
+    padding: 15px 18px;
+
+    background: #4a4038;
+    color: #fffdf8;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+
+    transition:
+        transform 0.15s ease,
+        opacity 0.15s ease;
+}
+
+.start-button:hover {
+    opacity: 0.92;
+}
+
+.start-button:active {
+    transform: scale(0.99);
+}
+
 input:focus {
     border-color: #9c8b79;
 
