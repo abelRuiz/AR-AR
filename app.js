@@ -2,11 +2,7 @@ const button = document.getElementById('open-note');
 const passwordInput = document.getElementById('password');
 const message = document.getElementById('message');
 
-const encryptedData = {
-    salt: 'pjOlkFpBM0zpD/z6H3+00Q==',
-    iv: 'KGoX6/EQG0IiVANJ',
-    ciphertext: 'HqkL04uA3IoZ3eGi/NXzrkdhNlHA+gRMtbbuGm/7G4QQnkm0lDg='
-};
+const encryptedData = window.encryptedData;
 
 button.addEventListener('click', async () => {
     const password = passwordInput.value.trim();
@@ -80,9 +76,23 @@ function base64ToBytes(base64) {
 }
 
 function showNote(note) {
+    const config = window.letterConfig ?? {
+        title: 'Una carta para ti',
+        date: ''
+    };
+
     document.querySelector('.card').innerHTML = `
-        <h1>Una nota para ti</h1>
-        <div class="note">${escapeHtml(note)}</div>
+        <h1>${escapeHtml(config.title)}</h1>
+
+        ${
+            config.date
+                ? `<p class="letter-date">${escapeHtml(config.date)}</p>`
+                : ''
+        }
+
+        <div class="note">
+            ${formatNote(note)}
+        </div>
     `;
 }
 
@@ -90,5 +100,26 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
 
-    return div.innerHTML.replace(/\n/g, '<br>');
-}	
+    return div.innerHTML;
+}
+
+function formatNote(text) {
+    let formatted = escapeHtml(text);
+
+    // Negritas
+    formatted = formatted.replace(
+        /\*\*(.*?)\*\*/g,
+        '<strong>$1</strong>'
+    );
+
+    // Cursivas
+    formatted = formatted.replace(
+        /\*(.*?)\*/g,
+        '<em>$1</em>'
+    );
+
+    // Saltos de línea
+    formatted = formatted.replace(/\n/g, '<br>');
+
+    return formatted;
+}
