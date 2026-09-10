@@ -81,6 +81,12 @@ function showNote(note) {
         date: ''
     };
 
+    if (typeof gtag === 'function') {
+        gtag('event', 'carta_abierta', {
+            carta: config.title
+        });
+    }
+
     document.querySelector('.card').innerHTML = `
         <h1>${escapeHtml(config.title)}</h1>
 
