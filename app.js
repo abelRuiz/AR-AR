@@ -22,7 +22,12 @@ button.addEventListener('click', async () => {
 
         showNote(note);
     } catch {
-        message.textContent = 'Código incorrecto.';
+        if (typeof gtag === 'function') {
+            gtag('event', 'carta_password_fallida', {
+                carta: window.letterConfig?.title ?? 'sin_titulo'
+            });
+        }
+        message.textContent = 'Código incorrecto, la contraseña esta en tus manos.';
     }
 });
 
