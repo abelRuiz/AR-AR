@@ -82,9 +82,6 @@ function showNote(note) {
     };
 
     if (typeof gtag === 'function') {
-        
-        console.log('Enviando evento carta_abierta:', config.title);
-
         gtag('event', 'carta_abierta', {
             carta: config.title
         });
